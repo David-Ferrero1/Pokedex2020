@@ -32,6 +32,7 @@ function fetchPokemonComplet(pokemon) {
 
             objPokemonFull.pic = pokeData.sprites.front_default;
             objPokemonFull.type = pokeData.types[0].type.name;
+            objPokemonFull.id = pokeData.id;
 
             fetch(`https://pokeapi.co/api/v2/pokemon-species/${nameP}`)
             .then(reponse => reponse.json())
@@ -42,7 +43,12 @@ function fetchPokemonComplet(pokemon) {
                 allPokemon.push(objPokemonFull);
 
                 if(allPokemon.length === 151) {
-                    console.log(allPokemon);
+                    //console.log(allPokemon);
+
+                    tableauFin = allPokemon.sort((a,b) => { // .sort pour trier les id
+                        return a.id - b.id;
+                    }).slice(0,21); //on coupe le tableau par tranche de 21 cartes
+                    //console.log(tableauFin);
                 }
             })
         })
