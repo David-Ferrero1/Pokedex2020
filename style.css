@@ -31,6 +31,7 @@ h1 {
     border: none;
     outline: none;
     border-radius: 3px;
+    font-size: 19px;
 }
 .recherche-poke label {
     position: absolute;
@@ -48,7 +49,8 @@ h1 {
 
 /* Animation d'input */
 
-.recherche-poke:focus-within label {
+.recherche-poke:focus-within label,
+.recherche-poke.active-input label {
     top: -15px;
     padding-left: 5px;
     color: #f1f1f1;
