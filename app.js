@@ -1,11 +1,13 @@
 //On va récupérer les données brut pour les transformer en français.
 let allPokemon = [];
 let tableauFin = [];
-const listePoke = document.querySelector('.li')
+
 
 //On va selectionner notre input pour faire disparaitre le texte au moment de la recherche
 
 const searchInput = document.querySelector('.recherche-poke input');
+const listePoke = document.querySelector('.liste-poke');
+
 
 // les couleurs de bcg
 
@@ -38,7 +40,7 @@ function fetchPokemonBase(){
                 fetchPokemonComplet(pokemon);
             });
         });
-}
+};
 fetchPokemonBase();
 
 function fetchPokemonComplet(pokemon) {
@@ -83,6 +85,7 @@ function fetchPokemonComplet(pokemon) {
 
 function createCard(arr) {
     for(let i = 0; i < arr.length; i++) {
+
         const carte = document.createElement('li');
         let couleur = types[arr[i].type];
         carte.style.background = couleur;
@@ -91,7 +94,7 @@ function createCard(arr) {
         const idCarte = document.createElement('p');
         idCarte.innerText = `ID# ${arr[i].id}`;
         const imgCarte = document.createElement('img');
-        imgCarte.src = arr[i].pic
+        imgCarte.src = arr[i].pic;
 
         carte.appendChild(imgCarte);
         carte.appendChild(txtCarte);
