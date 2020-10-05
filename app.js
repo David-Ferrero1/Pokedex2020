@@ -7,6 +7,7 @@ let tableauFin = [];
 
 const searchInput = document.querySelector('.recherche-poke input');
 const listePoke = document.querySelector('.liste-poke');
+const chargement = document.querySelector('.loader')
 
 
 // les couleurs de bcg
@@ -76,6 +77,9 @@ function fetchPokemonComplet(pokemon) {
 
                     //on va créer le tableauFin avec toute les carte triées 
                     createCard(tableauFin);
+
+                    // Le loader
+                    chargement.style.display = "none";
                 }
             })
         })
