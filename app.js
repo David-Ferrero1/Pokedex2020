@@ -1,10 +1,32 @@
 //On va récupérer les données brut pour les transformer en français.
 let allPokemon = [];
 let tableauFin = [];
+const listePoke = document.querySelector('.li')
 
 //On va selectionner notre input pour faire disparaitre le texte au moment de la recherche
 
 const searchInput = document.querySelector('.recherche-poke input');
+
+// les couleurs de bcg
+
+const types = {
+    grass: '#78c850',
+	ground: '#E2BF65',
+	dragon: '#6F35FC',
+	fire: '#F58271',
+	electric: '#F7D02C',
+	fairy: '#D685AD',
+	poison: '#966DA3',
+	bug: '#B3F594',
+	water: '#6390F0',
+	normal: '#D9D5D8',
+	psychic: '#F95587',
+	flying: '#A98FF3',
+	fighting: '#C25956',
+    rock: '#B6A136',
+    ghost: '#735797',
+    ice: '#96D9D6'
+};
 
 // On va appeler l'API de Pokemon
 function fetchPokemonBase(){
@@ -49,9 +71,34 @@ function fetchPokemonComplet(pokemon) {
                         return a.id - b.id;
                     }).slice(0,21); //on coupe le tableau par tranche de 21 cartes
                     //console.log(tableauFin);
+
+                    //on va créer le tableauFin avec toute les carte triées 
+                    createCard(tableauFin);
                 }
             })
         })
+}
+
+//Création des cartes
+
+function createCard(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        const carte = document.createElement('li');
+        let couleur = types[arr[i].type];
+        carte.style.background = couleur;
+        const txtCarte = document.createElement('h5');
+        txtCarte.innerText = arr[i].name;
+        const idCarte = document.createElement('p');
+        idCarte.innerText = `ID# ${arr[i].id}`;
+        const imgCarte = document.createElement('img');
+        imgCarte.src = arr[i].pic
+
+        carte.appendChild(imgCarte);
+        carte.appendChild(txtCarte);
+        carte.appendChild(idCarte);
+
+        listePoke.appendChild(carte);
+    }
 }
 
 //Animation input, ie dès qu'on va entrer dans l'input
