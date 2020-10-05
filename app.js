@@ -104,6 +104,34 @@ function createCard(arr) {
     }
 }
 
+//Scroll infini
+//on est à l'écoute d'un événement sur notre page
+window.addEventListener('scroll', () => {
+
+const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+    //dans document et documentElement, on a les trois éléments
+        // ScrollTop    : se qu'on a scrollé depuis le TOP
+        // ScrollHeight : c'est la hauteur totale du site
+        // clientHeight : hauteur du site que l'on voit, partie visible
+    //console.log(scrollTop, scrollHeight, clientHeight);
+    
+    if(clientHeight + scrollTop >= scrollHeight - 20 ) {  //si la partie visble + la partie scrollé depuis le top >= au scroll total - 20, on appliquera la méthode addPoke 
+        addPoke(6);
+    }
+
+})
+
+let index = 21;
+
+function addPoke(nb) {
+
+    if ( index > 151) {
+        return;
+    } 
+    const arrToAdd = allPokemon.slice(index, index + nb); //ici on appel 6 pokemon de plus après 21, 6 vu plus haut
+    createCard(arrToAdd);  // ici on rappel la fonction de création de carte avec les pokemon à la suite
+    index += nb;  // pour bien les prendres à la suite on actualise index
+}
 //Animation input, ie dès qu'on va entrer dans l'input
 
 searchInput.addEventListener('input', function(e) {
