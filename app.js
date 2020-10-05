@@ -132,6 +132,39 @@ function addPoke(nb) {
     createCard(arrToAdd);  // ici on rappel la fonction de création de carte avec les pokemon à la suite
     index += nb;  // pour bien les prendres à la suite on actualise index
 }
+
+
+// Recherche
+    //Ici on va être à l'écoute d'un événement l'orsqu'une touche se relève: KeyUp sur searchInput
+
+searchInput.addEventListener('keyup', recherche)
+
+function recherche() {   // On veut que tous s'affiche lors d'une recherche
+    if(index < 151) {
+        addPoke(130)
+    }
+
+    let filter, allLi, titleValue, AllTitles;
+
+    filter = searchInput.value.toUpperCase();
+    allLi = document.querySelectorAll('li');
+    AllTitles = document.querySelectorAll('li > h5');  // Tous les h5 qui sont dans les li
+
+    // On va gérer le système de recherche
+    for (i = 0; i < allLi.length; i++) {
+        titleValue = AllTitles[i].innerText
+
+        //on va comparer le nom du pokemon avec notre recherche
+        if(titleValue.toUpperCase().indexOf(filter) > -1) {
+            allLi[i].style.display = "flex";  // pas indispensable car déjà flex
+        } else {
+            allLi[i].style.display = "none";
+        }
+    }
+
+
+}
+
 //Animation input, ie dès qu'on va entrer dans l'input
 
 searchInput.addEventListener('input', function(e) {
