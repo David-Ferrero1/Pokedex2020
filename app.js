@@ -28,7 +28,23 @@ function fetchPokemonComplet(pokemon) {
     fetch(url)
         .then(reponse => reponse.json())
         .then((pokeData) => {
-            console.log(pokeData);
+            //console.log(pokeData); Ca fonctionne
+
+            objPokemonFull.pic = pokeData.sprites.front_default;
+            objPokemonFull.type = pokeData.types[0].type.name;
+
+            fetch(`https://pokeapi.co/api/v2/pokemon-species/${nameP}`)
+            .then(reponse => reponse.json())
+            .then((pokeData) => {
+                //console.log(pokeData);
+
+                objPokemonFull.name = pokeData.names[4].name;
+                allPokemon.push(objPokemonFull);
+
+                if(allPokemon.length === 151) {
+                    console.log(allPokemon);
+                }
+            })
         })
 }
 
