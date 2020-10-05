@@ -137,7 +137,15 @@ function addPoke(nb) {
 // Recherche
     //Ici on va être à l'écoute d'un événement l'orsqu'une touche se relève: KeyUp sur searchInput
 
-searchInput.addEventListener('keyup', recherche)
+//searchInput.addEventListener('keyup', recherche)
+
+// activation du btn rechercher
+const formRecherche = document.querySelector('form')
+formRecherche.addEventListener('submit', (e) => {
+    e.preventDefault();  // on empèche le refresh par defaut
+    recherche();
+
+})
 
 function recherche() {   // On veut que tous s'affiche lors d'une recherche
     if(index < 151) {
